@@ -1629,6 +1629,27 @@ void DrawLink(ImNodesEditorContext& editor, const int link_idx)
         link_color,
         GImNodes->Style.LinkThickness,
         cubic_bezier.NumSegments);
+
+    ImVec2 direct = ImVec2(end_pin.Pos.x - start_pin.Pos.x, 0.0f);
+    float arrowLength = 7.0f;
+
+    auto arrowColor = IM_COL32(0, 255, 0, 255);
+    ImVec2 arrowP1 = ImVec2(end_pin.Pos.x - arrowLength, end_pin.Pos.y);
+    ImVec2 arrowP2 = ImVec2(end_pin.Pos.x - arrowLength, end_pin.Pos.y);
+
+    if (direct.x < 0) {
+        arrowColor = IM_COL32(255, 0, 0, 255);
+        arrowP1 = ImVec2(end_pin.Pos.x + arrowLength, end_pin.Pos.y);
+        arrowP2 = ImVec2(end_pin.Pos.x + arrowLength, end_pin.Pos.y);
+    }
+
+    arrowP1.y += arrowLength;
+    arrowP2.y -= arrowLength;
+
+    ImGui::GetWindowDrawList()->AddLine(end_pin.Pos, arrowP1, arrowColor, 2.0f);
+    ImGui::GetWindowDrawList()->AddLine(end_pin.Pos, arrowP2, arrowColor, 2.0f);
+
+
 }
 
 void BeginPinAttribute(
