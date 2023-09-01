@@ -119,8 +119,8 @@ inline CubicBezier GetCubicBezier(
     const ImNodesAttributeType start_type,
     const float                line_segments_per_length)
 {
-    IM_ASSERT(
-        (start_type == ImNodesAttributeType_Input) || (start_type == ImNodesAttributeType_Output));
+    // Disable input/output limit
+    //IM_ASSERT((start_type == ImNodesAttributeType_Input) || (start_type == ImNodesAttributeType_Output));
     if (start_type == ImNodesAttributeType_Input)
     {
         ImSwap(start, end);
