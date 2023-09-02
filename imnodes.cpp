@@ -551,7 +551,8 @@ ImVec2 GetScreenSpacePinCoordinates(
     const ImRect&              attribute_rect,
     const ImNodesAttributeType type)
 {
-    IM_ASSERT(type == ImNodesAttributeType_Input || type == ImNodesAttributeType_Output);
+    // Disable input/output limit
+    //IM_ASSERT(type == ImNodesAttributeType_Input || type == ImNodesAttributeType_Output);
     const float x = type == ImNodesAttributeType_Input
                         ? (node_rect.Min.x - GImNodes->Style.PinOffset)
                         : (node_rect.Max.x + GImNodes->Style.PinOffset);
